@@ -1,4 +1,6 @@
-﻿using EC_APIGateway.Configuration;
+﻿using Duende.IdentityServer.Models;
+using EC_APIGateway.ClientStore;
+using EC_APIGateway.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
 namespace EC_APIGateway.Extension;
@@ -28,5 +30,17 @@ public static class AuthExtension
                 ValidAudience = selectedProvider.ValidAudience
             };
         });
+    }
+
+    public static void AddConfigIdentityServer(this IServiceCollection service)
+    {
+        service.AddSingleton<CustomClientStore>();
+        service.AddIdentityServer()
+            .AddClientStore<CustomClientStore>()
+            .AddInMemoryApiScopes(new List<ApiScope>
+            {
+                new("api1", "My API")
+            })
+            .AddDeveloperSigningCredential();
     }
 }
