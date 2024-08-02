@@ -1,0 +1,21 @@
+# This is a generated file. Not intended for manual editing.
+services:
+  server:
+    build:
+      context: "D:\\WorkSpace\\API_development\\EC-APIGateway"
+      dockerfile: "Dockerfile"
+      target: "build"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net8.0/EC-APIGateway.dll"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "ec-apigateway:dev"
+    ports: []
+    volumes:
+    - "C:\\Users\\ASUS\\.nuget\\packages:/root/.nuget/packages"
+    - "D:\\WorkSpace\\API_development\\EC-APIGateway:/app:rw"
+    - "D:\\WorkSpace\\API_development\\EC-APIGateway:/src:rw"
+    working_dir: "/app"
